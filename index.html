@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma de Moda Circular e Impacto Social | Equipo #6</title>
+    <style>
+        :root {
+            --primary-color: #1b5e20;
+            --secondary-color: #0d47a1;
+            --accent-color: #e65100;
+            --dark-color: #212121;
+            --light-color: #f4f6f8;
+            --white: #ffffff;
+            --gray-border: #cfd8dc;
+            --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+        }
+
+        /* Header y Navegación Sticky */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Banner Hero */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            max-width: 850px;
+            margin: 0 auto 2rem auto;
+            opacity: 0.95;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.85rem 2.2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: background 0.3s ease;
+        }
+
+        .btn-cta:hover {
+            background-color: #003300;
+        }
+
+        /* Contenedor Global */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.1rem;
+            margin-bottom: 2.5rem;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 70px;
+            height: 4px;
+            background-color: var(--accent-color);
+            display: block;
+            margin: 0.6rem auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* Tarjetas de Integrantes */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .team-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .team-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.4rem;
+            color: var(--dark-color);
+        }
+
+        .team-card .role {
+            color: var(--accent-color);
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .team-card p {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        /* Bloques de Diagnóstico y ODS */
+        .grid-two-col {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .card-box {
+            background-color: var(--white);
+            padding: 2.2rem;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border: 1px solid #e0e0e0;
+        }
+
+        .card-box h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Bloque de App y QR */
+        .app-block {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            background-color: var(--white);
+            padding: 3rem;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            align-items: center;
+        }
+
+        .app-info {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .app-info p {
+            margin-bottom: 1rem;
+        }
+
+        .tag-list {
+            display: flex;
+            gap: 0.8rem;
+            margin: 1rem 0;
+        }
+
+        .tag {
+            background-color: #e8f5e9;
+            color: var(--primary-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            border: 1px solid #c8e6c9;
+        }
+
+        .qr-display {
+            flex: 1;
+            min-width: 250px;
+            background-color: var(--light-color);
+            padding: 2rem;
+            text-align: center;
+            border: 2px dashed var(--primary-color);
+            border-radius: 6px;
+        }
+
+        .qr-placeholder {
+            width: 140px;
+            height: 140px;
+            background-color: var(--white);
+            margin: 1rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--gray-border);
+            font-weight: bold;
+            color: var(--dark-color);
+        }
+
+        /* Tablas Financieras */
+        .table-wrapper {
+            overflow-x: auto;
+            margin-top: 1.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--white);
+            font-size: 0.95rem;
+        }
+
+        table th, table td {
+            padding: 0.9rem 1.1rem;
+            border: 1px solid var(--gray-border);
+            text-align: left;
+        }
+
+        table th {
+            background-color: var(--primary-color);
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            text-align: center;
+            padding: 2.5rem 2rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            font-size: 0.88rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <div class="logo">Fin de la Pobreza #1 | Equipo 6</div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#equipo">Equipo</a></li>
+                <li><a href="#diagnostico">Problema y ODS</a></li>
+                <li><a href="#solucion">App Móvil</a></li>
+                <li><a href="#negocio">Plan de Negocios</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section id="inicio" class="hero">
+        <h1>Plataforma de Moda Circular e Impacto Social</h1>
+        <p>Transformamos el desperdicio textil en un mecanismo transparente de asistencia social, conectando donantes, ayuntamientos y comunidades vulnerables a través de tecnología QR.</p>
+        <a href="#solucion" class="btn-cta">Explorar la Solución Tecnológica</a>
+    </section>
+
+    <section id="equipo" class="container">
+        <h2 class="section-title">Integrantes del Equipo #6</h2>
+        <div class="team-grid">
+            <div class="team-card">
+                <h3>Naomi Elizabeth Juárez Franco</h3>
+                <div class="role">Directora de Proyecto</div>
+                <p>Liderazgo general, articulación institucional con la Secretaría de Bienestar y el DIF municipal.</p>
+            </div>
+            <div class="team-card">
+                <h3>Densel Mauricio Alfaro Vergara</h3>
+                <div class="role">Director de Operaciones</div>
+                <p>Gestión de la red de Puntos Verdes, logística vehicular y convenios con Ayuntamientos.</p>
+            </div>
+            <div class="team-card">
+                <h3>Evolet Alizee Trejo Ornelas</h3>
+                <div class="role">Directora de Tecnología (UX/UI)</div>
+                <p>Diseño del sistema de trazabilidad por QR, arquitectura del portal web y la aplicación móvil.</p>
+            </div>
+            <div class="team-card">
+                <h3>Diana Elizabeth Mejía Ramos</h3>
+                <div class="role">Directora Financiera</div>
+                <p>Estrategia de donataria autorizada ante SHCP/SAT y procuración de fondos corporativos.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="diagnostico" style="background-color: #e8f5e9;">
+        <div class="container">
+            <h2 class="section-title">Diagnóstico Territorial y Cumplimiento de ODS</h2>
+            <div class="grid-two-col">
+                <div class="card-box">
+                    <h3>El Desafío Ambiental y Social</h3>
+                    <p>En México se generan más de 8 millones de toneladas de residuos industriales al año, donde los materiales textiles representan un grave foco de contaminación al terminar en un 88% en tiraderos no autorizados. Al mismo tiempo, millones de familias sufren la falta de acceso a indumentaria digna. La plataforma resuelve esta asimetría.</p>
+                </div>
+                <div class="card-box">
+                    <h3>Alineación con la Agenda 2030</h3>
+                    <p><strong>ODS 1 (Fin de la Pobreza):</strong> Aprovisionamiento de ropa digna a familias en vulnerabilidad.<br><br>
+                    <strong>ODS 12 (Consumo Responsable):</strong> Reintegración circular de prendas y desvío de textiles de los vertederos.<br><br>
+                    <strong>ODS 17 (Alianzas):</strong> Articulación entre SHCP, municipios, corporativos y sociedad civil.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="solucion" class="container">
+        <h2 class="section-title">Solución Tecnológica y Logística Municipal</h2>
+        <div class="app-block">
+            <div class="app-info">
+                <h3>Aplicación Móvil y Trazabilidad QR</h3>
+                <p>Nuestra plataforma simplifica el proceso de donación al permitir que los ciudadanos etiqueten sus paquetes desde su teléfono inteligente. Cada paquete es clasificado bajo tres etiquetas fundamentales:</p>
+                <div class="tag-list">
+                    <span class="tag">#Color</span>
+                    <span class="tag">#Talla</span>
+                    <span class="tag">#Forma</span>
+                </div>
+                <p>Las prendas registradas son entregadas en los Puntos Verdes instalados en los Ayuntamientos. Los camiones recolectores municipales trasladan los insumos al centro de selección. A cambio, el donante recibe cupones de descuento (%) en establecimientos patrocinadores.</p>
+            </div>
+            <div class="qr-display">
+                <h4>Código QR de Seguimiento</h4>
+                <div class="qr-placeholder">CÓDIGO QR</div>
+                <p style="font-size: 0.85rem; color: #666;">Escanea el código para rastrear el destino final de tu ropa y activar tus recompensas.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="negocio" class="container">
+        <h2 class="section-title">Plan de Negocios y Estructura Financiera</h2>
+        <p>El proyecto garantiza su viabilidad financiera mediante una combinación de patrocinios de responsabilidad social corporativa, aportaciones institucionales y filantropía de alto impacto.</p>
+
+        <h3 style="margin-top: 2rem; color: var(--primary-color);">Estructura de Costes Anual (OPEX)</h3>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rubro Presupuestal</th>
+                        <th>Costo Mensual (MXN)</th>
+                        <th>Costo Anual (MXN)</th>
+                        <th>Descripción Operativa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Transporte y Logística</td>
+                        <td>$2,500</td>
+                        <td>$30,000</td>
+                        <td>Combustible y mantenimiento de unidades de recolección municipal.</td>
+                    </tr>
+                    <tr>
+                        <td>Programa de Incentivos</td>
+                        <td>$5,000</td>
+                        <td>$60,000</td>
+                        <td>Financiamiento de la red de cupones y beneficios digitales.</td>
+                    </tr>
+                    <tr>
+                        <td>Marketing y Difusión</td>
+                        <td>$1,500 – $2,000</td>
+                        <td>$18,000 – $24,000</td>
+                        <td>Promoción ciudadana, difusión en redes y material impreso.</td>
+                    </tr>
+                    <tr>
+                        <strong>Costo Operativo Total</strong>
+                        <strong>$9,000 – $9,500</strong>
+                        <strong>$108,000 – $114,000</strong>
+                        <strong>Presupuesto base para un nodo de cobertura municipal.</strong>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3 style="margin-top: 2.5rem; color: var(--primary-color);">Modelo de Ingresos Proyectado</h3>
+        <div class="grid-two-col" style="margin-top: 1rem;">
+            <div class="card-box">
+                <h4>Donaciones e Incentivos Individuales</h4>
+                <p>Captación de donantes recurrentes con cuotas mínimas sugeridas de $5,000 MXN anuales, garantizando un flujo constante de capital de trabajo.</p>
+            </div>
+            <div class="card-box">
+                <h4>Patrocinios Corporativos (RSE / Deducibles)</h4>
+                <p>Convenios con empresas por montos entre $150,000 y $500,000 MXN anuales. Al contar con el registro de Donataria Autorizada ante el SAT/SHCP, las empresas reciben comprobantes deducibles de impuestos.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Plataforma de Moda Circular e Impacto Social - Equipo #6.</p>
+        <p>Iniciativa diseñada en estricta alineación con los Objetivos de Desarrollo Sostenible de las Naciones Unidas.</p>
+    </footer>
+
+</body>
+</html>
